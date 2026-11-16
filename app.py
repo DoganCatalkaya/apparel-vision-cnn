@@ -18,7 +18,7 @@ CLASSES = [
     "Bot (Ankle boot)"
 ]
 
-# Model Mimarisi (train.py ile birebir aynı)
+# Model Mimarisi 
 class SimpleFashionCNN(nn.Module):
     def __init__(self):
         super().__init__()
@@ -61,14 +61,14 @@ def predict_clothing(image, invert_colors):
     # 1. Gri tonlamaya çevir
     gray_img = image.convert("L")
     
-    # 2. Arka plan açıksa (beyaz duvar/çarşaf vb.) renkleri ters çevir (Fashion-MNIST siyah arka planlıdır)
+    # 2. Arka plan açıksa (beyaz duvar/çarşaf vb.) renkleri ters çevir 
     if invert_colors:
         gray_img = ImageOps.invert(gray_img)
         
     # 3. Kontrastı artır ki kıyafet netleşsin
     gray_img = ImageOps.autocontrast(gray_img)
     
-    # Modelin gördüğü 28x28 hali (rapora koymak için görselleştiriyoruz)
+    # Modelin gördüğü 28x28 hali
     processed_preview = gray_img.resize((140, 140), Image.NEAREST)
     
     # Tensöre çevir ve tahmin yap
